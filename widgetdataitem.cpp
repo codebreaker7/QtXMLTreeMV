@@ -1,16 +1,20 @@
 #include "widgetdataitem.h"
 
-WidgetDataItem::WidgetDataItem(const QList<QString> &vals, WidgetDataItem * parent = 0)
+WidgetDataItem::WidgetDataItem(const QList<QString> &vals, WidgetDataItem * parent)
 {
     this->parent = parent;
-    data = vals;
+    datas = vals;
 }
 
-int WidgetDataItem::childCount() {
+int WidgetDataItem::childCount() const {
     return children.count();
 }
 
-int WidgetDataItem::row() {
+int WidgetDataItem::columnCount() const {
+    return datas.count();
+}
+
+int WidgetDataItem::row() const {
     if (parent) {
         return parent->children.indexOf(const_cast<WidgetDataItem*>(this));
     }
@@ -22,7 +26,7 @@ void WidgetDataItem::appendChild(WidgetDataItem *child) {
 }
 
 QString WidgetDataItem::data(int column) const {
-    return data.value(column);
+    return datas.value(column);
 }
 
 WidgetDataItem * WidgetDataItem::parentItem() {

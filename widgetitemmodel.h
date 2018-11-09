@@ -8,7 +8,7 @@ class WidgetItemModel : public QAbstractItemModel
 {
     Q_OBJECT
 public:
-    explicit WidgetItemModel(const QString& data, QObject * parent = 0);
+    explicit WidgetItemModel(const QStringList &data, QObject * parent = 0);
     ~WidgetItemModel();
 
     // QAbstractItemModel interface

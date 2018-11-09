@@ -1,12 +1,12 @@
 #include "widgetitemmodel.h"
 
-WidgetItemModel::WidgetItemModel(const QString &data, QObject *parent):
+WidgetItemModel::WidgetItemModel(const QStringList &data, QObject *parent):
     QAbstractItemModel(parent)
 {
-    QList<QVariant> rootdata;
+    QList<QString> rootdata;
     rootdata << "Widget";
     rootItem = new WidgetDataItem(rootdata);
-
+    setupModelData(data, rootItem);
 }
 
 QModelIndex WidgetItemModel::index(int row, int column, const QModelIndex &parent) const
@@ -91,6 +91,14 @@ Qt::ItemFlags WidgetItemModel::flags(const QModelIndex &index) const
         return 0;
     }
     return QAbstractItemModel::flags(index);
+}
+
+void WidgetItemModel::setupModelData(const QStringList &lines, WidgetDataItem *parent) {
+    // for now just add items into the model expecting just single line per item
+    // TODO: parse data from XML into items to create a tree structure
+    for (int i = 0; i < lines.size(); ++i) {
+        parent->appendChild(new WidgetDataItem(QList<QString>() << lines.at(i), parent));
+    }
 }
 
 

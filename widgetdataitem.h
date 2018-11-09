@@ -6,7 +6,7 @@
 class WidgetDataItem
 {
 public:
-    explicit WidgetDataItem(const QList<QString> vals, WidgetDataItem * parent = 0);
+    explicit WidgetDataItem(const QList<QString> &vals, WidgetDataItem * parent = 0);
     ~WidgetDataItem();
 
     void appendChild(WidgetDataItem * child);
@@ -19,7 +19,7 @@ public:
 private:
     QList<WidgetDataItem*> children;
     WidgetDataItem * parent;
-    QList<QString> data;
+    QList<QString> datas;
 };
 
 #endif // WIDGETDATAITEM_H

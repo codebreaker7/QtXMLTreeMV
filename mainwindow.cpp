@@ -18,6 +18,11 @@ void MainWindow::selectFileToOpen() {
         QString filename = dialog.selectedFiles().first();
         ui->fileNameEdit->setText(filename);
         reader->readXmlFile(filename);
+        // get read items
+        QStringList * itemsList = reader->getItems();
+        // setup model
+        itemModel = new WidgetItemModel(*itemsList);
+        ui->docStructureView->setModel(itemModel);
     }
 }
 

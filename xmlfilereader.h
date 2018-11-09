@@ -7,6 +7,7 @@ class XmlFileReader
 {
 public:
     XmlFileReader();
+    QStringList * getItems() const;
     void readXmlFile(const QString&);
 private:
     QXmlStreamReader * reader;
